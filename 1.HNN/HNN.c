@@ -12,12 +12,12 @@
 
 #define NEURONS 64 // تعداد نورون‌ها
 
-// ماتریس وزن‌ها و آرایه‌های الگو
+
 int weights[NEURONS][NEURONS] = {0};
 int recognize[NEURONS];
 int patterns[10][NEURONS];
 
-// تابع به‌روزرسانی یک نورون
+// Function to update a single neuron based on its weighted inputs
 void update_neuron(int x, int *new_recognize) {
     int sum = 0;
     for (int i = 0; i < NEURONS; i++) {
@@ -26,7 +26,7 @@ void update_neuron(int x, int *new_recognize) {
     new_recognize[x] = (sum >= 0) ? 1 : 0;
 }
 
-// تابع وارد کردن یک الگوی تصویر به شبکه
+// Function to load an image pattern into the network
 void insert_img(int *pattern, char *x_bits) {
     for (int i = 0; i < NEURONS / 8; i++) {
         for (int j = 0; j < 8; j++) {
@@ -35,7 +35,7 @@ void insert_img(int *pattern, char *x_bits) {
     }
 }
 
-// تابع آموزش شبکه با یک الگو
+// Function to train the Hopfield network using a pattern
 void train(int *pattern) {
     for (int i = 0; i < NEURONS; i++) {
         for (int j = 0; j < NEURONS; j++) {
@@ -46,7 +46,7 @@ void train(int *pattern) {
     }
 }
 
-// تابع چاپ یک الگو
+// Function to print a pattern as an 8x8 grid
 void print_pat(int *pattern) {
     for (int i = 0; i < NEURONS; i++) {
         if (i % 8 == 0) {
@@ -57,7 +57,7 @@ void print_pat(int *pattern) {
     printf("\n");
 }
 
-// تابع به‌روزرسانی تمام نورون‌های شبکه
+// Function to iteratively update all neurons in the network
 void update_all() {
     int new_recognize[NEURONS];
     for (int i = 0; i < 10; i++) {
@@ -67,15 +67,15 @@ void update_all() {
         for (int k = 0; k < NEURONS; k++) {
             recognize[k] = new_recognize[k];
         }
-        // دستور چاپ برای مشاهده تغییرات بعد از هر چرخه به‌روزرسانی
+       
         printf("Recognition pattern after update cycle %d:\n", i + 1);
         print_pat(recognize);
     }
 }
 
-// تابع اصلی برای اجرای شبیه‌سازی شبکه هاپفیلد
+// Main function to execute the Hopfield network simulation
 int main() {
-    // وارد کردن همه الگوها به شبکه
+    
     insert_img(patterns[0], _1_bits);
     insert_img(patterns[1], _2_bits);
     insert_img(patterns[2], _3_bits);
@@ -88,19 +88,17 @@ int main() {
     insert_img(patterns[9], _10_bits);
     insert_img(recognize, _10_bits);
 
-    // آموزش شبکه با الگوهای وارد شده
+   
     for (int i = 0; i < 10; i++) {
         train(patterns[i]);
     }
 
-    // چاپ الگوی اولیه شناسایی
     printf("Initial recognize pattern:\n");
     print_pat(recognize);
-
-    // به‌روزرسانی تمام نورون‌های شبکه
+    
     update_all();
 
-    // چاپ الگوی به‌روزرسانی شده شناسایی
+    
     printf("Updated recognize pattern:\n");
     print_pat(recognize);
 

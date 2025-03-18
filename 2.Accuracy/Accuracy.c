@@ -10,23 +10,23 @@
 #include "9.xbm"
 #include "10.xbm"
 
-#define NEURONS 64 // تعداد نورون‌ها
+#define NEURONS 64 // Number of neurons
 
-// ماتریس وزن‌ها و آرایه‌های الگو
+// Weight matrix and pattern arrays
 int weights[NEURONS][NEURONS] = {0};
-int recognize[NEURONS];
-int patterns[10][NEURONS];
+int recognize[NEURONS]; 
+int patterns[10][NEURONS]; 
 
-// تابع به‌روزرسانی یک نورون
+// Function to update a single neuron based on its weighted sum
 void update_neuron(int x, int *new_recognize) {
     int sum = 0;
     for (int i = 0; i < NEURONS; i++) {
         sum += weights[i][x] * recognize[i];
     }
-    new_recognize[x] = (sum >= 0) ? 1 : 0;
+    new_recognize[x] = (sum >= 0) ? 1 : 0; // Activation function
 }
 
-// تابع وارد کردن یک الگوی تصویر به شبکه
+// Function to insert an image pattern into the network
 void insert_img(int *pattern, char *x_bits) {
     for (int i = 0; i < NEURONS / 8; i++) {
         for (int j = 0; j < 8; j++) {
@@ -35,7 +35,7 @@ void insert_img(int *pattern, char *x_bits) {
     }
 }
 
-// تابع آموزش شبکه با یک الگو
+// Function to train the network with a given pattern using Hebbian learning
 void train(int *pattern) {
     for (int i = 0; i < NEURONS; i++) {
         for (int j = 0; j < NEURONS; j++) {
@@ -46,7 +46,7 @@ void train(int *pattern) {
     }
 }
 
-// تابع چاپ یک الگو
+// Function to print a stored pattern
 void print_pat(int *pattern) {
     for (int i = 0; i < NEURONS; i++) {
         if (i % 8 == 0) {
@@ -57,10 +57,10 @@ void print_pat(int *pattern) {
     printf("\n");
 }
 
-// تابع به‌روزرسانی تمام نورون‌های شبکه
+// Function to update all neurons in the network iteratively perform 10 cycle
 void update_all() {
     int new_recognize[NEURONS];
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) { 
         for (int j = 0; j < NEURONS; j++) {
             update_neuron(j, new_recognize);
         }
@@ -72,7 +72,7 @@ void update_all() {
     }
 }
 
-// تابع محاسبه دقت
+// Function to calculate the accuracy of pattern recognition
 double calculate_accuracy(int *pattern1, int *pattern2) {
     int matches = 0;
     for (int i = 0; i < NEURONS; i++) {
@@ -80,12 +80,12 @@ double calculate_accuracy(int *pattern1, int *pattern2) {
             matches++;
         }
     }
-    return (double)matches / NEURONS * 100;
+    return (double)matches / NEURONS * 100; 
 }
 
-// تابع اصلی برای اجرای شبیه‌سازی شبکه هاپفیلد
+// Main function to simulate the Hopfield network
 int main() {
-    // وارد کردن همه الگوها به شبکه
+    // Load patterns into the network
     insert_img(patterns[0], _1_bits);
     insert_img(patterns[1], _2_bits);
     insert_img(patterns[2], _3_bits);
@@ -98,24 +98,24 @@ int main() {
     insert_img(patterns[9], _10_bits);
     insert_img(recognize, _10_bits);
 
-    // آموزش شبکه با الگوهای وارد شده
+    // Train the network using the loaded patterns
     for (int i = 0; i < 10; i++) {
         train(patterns[i]);
     }
 
-    // چاپ الگوی اولیه شناسایی
+    // Print the initial recognition pattern
     printf("Initial recognize pattern:\n");
     print_pat(recognize);
 
-    // به‌روزرسانی تمام نورون‌های شبکه
+    // Update all neurons iteratively
     update_all();
 
-    // چاپ الگوی به‌روزرسانی شده شناسایی
+    // Print the final recognition pattern after updates
     printf("Updated recognize pattern:\n");
     print_pat(recognize);
 
-    // محاسبه و چاپ دقت
-    double accuracy = calculate_accuracy(recognize, patterns[9]);  // مقایسه با الگوی 10 (به عنوان مثال)
+    // Calculate and print accuracy by comparing with pattern 10
+    double accuracy = calculate_accuracy(recognize, patterns[9]);  
     printf("Accuracy: %.2f%%\n", accuracy);
 
     getchar();

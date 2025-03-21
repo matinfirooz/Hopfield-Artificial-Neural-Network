@@ -1,10 +1,14 @@
 # Artificial Neural Network 
 
-This repository contains code and documentation for the second exercise in the "Bio-Inspired Design" course (Semester 2024-2025, SBU,Iran). The goal of this exercise is to implement and work with different types of artificial neural networks, focusing on Hopfield and BAM networks. The exercise involves modifying code, evaluating performance, and conducting experiments with noisy image datasets.
+This repository contains code and documentation for the second exercise in the "Bio-Inspired Design" course (Semester 2024-2025, SBU,Iran). 
+The goal of this exercise is to implement and work with different types of artificial neural networks, focusing on Hopfield networks.
+The exercise involves modifying code, evaluating performance, and conducting experiments with noisy image datasets.
 
 ## Exercise Overview
 
-The objective of this exercise is to work with neural networks that act as content-based memory, specifically implementing Hopfield and BAM networks. The following tasks are part of this exercise:
+The objective of this exercise is to work with neural networks that act as content-based memory, specifically implementing Hopfield networks. 
+
+The following tasks are part of this exercise:
 
 1. **Modify Code to Work with Provided Dataset**: 
    - You will receive a dataset that needs to be used with the provided base code.

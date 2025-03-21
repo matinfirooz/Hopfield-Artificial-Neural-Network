@@ -1,4 +1,4 @@
-# Artificial Neural Network 
+# Hopfield Artificial Neural Network 
 
 This repository contains code and documentation for the second exercise in the "Bio-Inspired Design" course (Semester 2024-2025, SBU,Iran). 
 

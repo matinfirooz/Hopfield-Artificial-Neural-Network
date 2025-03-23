@@ -1,6 +1,10 @@
 # Hopfield Artificial Neural Network 
 
-This repository contains code and documentation for the second exercise in the "Bio-Inspired Design" course (Semester 2024-2025, SBU,Iran). 
+##  Course Information
+- **Course Name:** Bio Inspired Design Course  
+- **Department:** Faculty of Engineering and Computer Science  
+- **University:** Shahid Beheshti University  
+---
 
 The goal of this exercise is to implement and work with different types of artificial neural networks, focusing on Hopfield networks.
 The exercise involves modifying code, evaluating performance, and conducting experiments with noisy image datasets.

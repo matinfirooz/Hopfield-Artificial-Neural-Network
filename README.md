@@ -1,11 +1,5 @@
 # Hopfield Artificial Neural Network 
 
-##  Course Information
-- **Course Name:** Bio Inspired Design Course  
-- **Department:** Faculty of Engineering and Computer Science  
-- **University:** Shahid Beheshti University  
----
-
 The goal of this exercise is to implement and work with different types of artificial neural networks, focusing on Hopfield networks.
 The exercise involves modifying code, evaluating performance, and conducting experiments with noisy image datasets.
 
